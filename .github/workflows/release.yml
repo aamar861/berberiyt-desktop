@@ -30,7 +30,9 @@ jobs:
 
       - run: npm install
 
-      - run: npm run ${{ matrix.script }}
+      # --publish never: electron-builder only packages. Uploading to the
+      # Release is left to the step below, which uses the workflow token.
+      - run: npm run ${{ matrix.script }} -- --publish never
         env:
           # Unsigned builds — skip electron-builder's signing-identity lookup.
           CSC_IDENTITY_AUTO_DISCOVERY: false
