@@ -43,6 +43,10 @@ function createWindow() {
 
   mainWindow.once("ready-to-show", () => mainWindow.show());
 
+  // Keep the window titled "BerberiYt" instead of adopting the page's full
+  // SEO title ("BerberiYt — Platforma për rezervime …").
+  mainWindow.on("page-title-updated", (event) => event.preventDefault());
+
   // Target="_blank" and window.open go to the default browser.
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
